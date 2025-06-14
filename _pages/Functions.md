@@ -57,7 +57,7 @@ You simply enter the input test data you wish to run your code against, and pres
 
 The output will show a few things, but your main concern is line 2, where the key is called "data."  This is your output object that your Webex CC Flow will need to leverage JSONPath to parse the returned object for it's individual pieces and parts.  In my screenshot below, my test was successful, and my output matches my input, just like a Parrot.
 
-<img style="border: 1px solid grey;" src="/assets/images/Functions/basic-function-testing.png" height="500" />
+<img style="border: 1px solid grey;" src="/assets/images/Functions/basic-function-testing.png" width="100%" />
 
 ## Using the Function
 
@@ -67,7 +67,7 @@ In Webex CC Flow Designer, you can find your functions right next to Subflows, a
 * Input Mappings
 * Output JSONPath
 
-<img style="border: 1px solid grey;" src="/assets/images/Functions/basic-function-webexcc-flow.png" height="500" />
+<img style="border: 1px solid grey;" src="/assets/images/Functions/basic-function-webexcc-flow.png" width="100%" />
 
 When I debug this flow, we can see that my input (a String variable called "say"), is passed into the Function, and that my output (a String variable called "said"), is used to hold the results of my JSONPath expression.
 
