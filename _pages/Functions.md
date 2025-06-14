@@ -21,7 +21,7 @@ I did not pick the Runtime, which states "Node.js 22.x", nor is there a way to e
 
 Also, I picked Javascript, and I will not be talking about Python in this article, as I feel Javascript is the better of the two languages to learn, as it can be used natively in Webex and on Webex Devices.  Feel free to experiment with Python as you see fit.
 
-<img style="border: 1px solid grey;" src="/assets/images/Functions/basic-function-input-output.png" height="500" />
+<img style="border: 1px solid grey;" src="/assets/images/Functions/basic-function-input-output.png" width="100%" />
 
 From the screenshot, I drew two connecting lines, one in red for the input and one in blue for the output.
 
