@@ -27,7 +27,7 @@ From the screenshot, I drew two connecting lines, one in red for the input and o
 
 ### Input Variables
 
-You first start by clicking the "Add Input Variable" button, and just like in a Subflow, you define your local variables, for which your Webex CC Flow will pass data into at runtime.  Here, I have created a single input variable of type String (type is not that important right now), and called it, very creatively I might add, "input."  On line 2, you can see how my Javascript code gains access to this variable, which is through a Javascript method called [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring).
+You first start by clicking the "Add Input Variable" button, and just like in a Subflow, you define your local variables, for which your Webex CC Flow will pass data into at runtime.  Here, I have created a single input variable of type String (type is not that important right now), and called it, very creatively I might add, "input."  On line 2, and connected via the red line to the input variable itself, you can see how my Javascript code gains access to this variable, which is through a Javascript method called [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring).
 
 ### Output Variables
 
