@@ -29,13 +29,13 @@ From the screenshot, I drew two connecting lines, one in red for the input and o
 
 You first start by clicking the "Add Input Variable" button, and just like in a Subflow, you define your local variables, for which your Webex CC Flow will pass data into at runtime.  Here, I have created a single input variable of type String (type is not that important right now), and called it, very creatively I might add, "input."  You can see how my Javascript code gains access to this variable, which is through a Javascript method called [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring).
 
-## Output Variables
+### Output Variables
 
 You first start by writing the code as seen on line 4 above, which defines the Javascript object that will be passed back to the calling Webex CC Flow. In my case, I simply pass back a simple object with one key named, again, very creatively, "output," with its value set to my variable called "input."
 
 Now, the blue line is connecting this line 4, to the output area over on the right, where you see JSONPath like syntax, however, this input field is nothing more than a description box, where you can type in whatever you want.  Think of it like a hint field, to remind you how to obtain the output data you need.  Since, over in the Webex CC Flow calling this function, we must read the output data by way of JSONPath, to me, it makes the most sense to put helpful JSONPath information in this box.
 
-## The Javascript Code
+### The Javascript Code
 
 I have pasted the code below for your convenience, just in case you wish to copy and paste it.  Note that lines 1, 6 & 7 are static and should not be altered, but lines 2 & 4 are my customizations, and you don't even need them, technically, or instead of 2 lines, this could be up to ~5,000 lines of code (the current maximum).
 
