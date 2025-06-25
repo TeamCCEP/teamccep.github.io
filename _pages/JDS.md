@@ -40,7 +40,7 @@ A comprehensive summary of the feature is available in the [Developer Portal](ht
 
 1. `Fill out` this [form](https://app.smartsheet.com/b/form/7776df72239e47d0bbb73a392e32927f) to have CJDS provisioned for your tenant enabled, as it **not** enabled by default. If applicable, please work together with your Customer Success Manager (CSM) to ensure a smooth process and enablement. Post the initial request, the Cisco team will provision the CJDS instance within 72 hours.
 
-2. When JDS is provisioned for the tenant, `Customer Journey Data` tab appears in the Control Hub.
+2. When JDS is provisioned for the tenant, `Customer Journey Data` tab appears in the Control Hub. **It will only be visible to full customer admins. Partner admins will not see this tab.**
 
 3. You can set how long to retain data that's captured for CJDS. We recommend that you keep a minimum of 180 days to make sure that there are sufficient end-user journey data. By default, data is retained for 365 days.
 
