@@ -61,7 +61,7 @@ The customer Journey widget provides a single pane of glass view to the customer
 ### Create a journey project and Activate Webex Contact Center connector
 
 Journey `projects` help organizations manage multiple data sources. Each journey project has a unique identifier which is required to leverage CJDS APIs payloads. Note that `project IDs` in Control Hub are referred to as `workspace IDs` in APIs.
-Jouney project may be activated with the `Webex Contact Center connector`. This allows the journey project to capture all customer events and send it to CJDS from Contact Center. Once the connector is activated in one project, it cannot be activated in another. **At any point in time, it can be enabled for only one project.**
+Jouney project may be activated with the `Webex Contact Center connector`. This allows the journey project to capture all customer events and send it to CJDS from Contact Center. Once the connector is activated in one project, it cannot be activated in another. **At any point in time, it can be enabled for only one project.** If you wish to create another project in addition to the default one, follow the steps below.
 
 1. Sign in to **Control Hub** and go to `Customer Journey Data > Journey projects`.
 
@@ -76,6 +76,12 @@ Jouney project may be activated with the `Webex Contact Center connector`. This 
 ![jdsactivateconnector](/assets/images/JDS/jds_activate_connector.gif)
 
 ### Add User Identities to a Journey Project
+
+Identities are used as a unique identifier for a customer contact across all contact methods. We would tie a users email address, phone numbers, social ID's etc back to a single unique identifier, so no matter what method they use to contact the contact centre, historical interactions across all the different channels are visible to the agent.
+
+You can create identities using Control Hub, or via API.
+
+#### Via Control Hub
 
 1. Select the journey `project` for which connector was activated.
 
@@ -96,6 +102,78 @@ Jouney project may be activated with the `Webex Contact Center connector`. This 
 6. If the CSV file is valid, a window appears to show you if the import was successful. Once you're done, select `Close`. You should see a list of all the uploaded customer identities.
 
 ![jdsuploadidentities](/assets/images/JDS/jds_upload_ids.gif)
+
+#### Via API
+
+1. Download the [JDS Postman Collection](https://github.com/WebexSamples/webex-contact-center-api-samples/tree/main/customer-journey-samples/cjds-postman-example)
+
+2. Import into Postman or Bruno. Create a new token for use with the collection. [Oauth Token Creation for Postman](https://app.vidcast.io/share/6b54f08d-0cd2-481f-979b-c8643c1d6a13)
+
+3. Navigate to the "Create Identity" request and fill out your own details in the body.
+
+```
+curl --location --request POST 'https://api-jds.wxdap-produs1.webex.com/admin/v1/api/person/workspace-id/64da3f9d21a4034e04bc54c8'
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer REMOVED FOR SECURITY' \
+--data-raw '{
+"firstName": "Carl",
+"lastName": "Newton",
+"phone": [
+"+44123456789",
+"+440987864521"
+],
+"email": [
+"canewton_test@cisco.com"
+],
+"customerId": [
+"1472589"
+],
+"temporaryId": [
+"temp14725"
+],
+ "socialId": [
+ "social123"
+ ]
+}'
+```
+ 4. The above request results in the following response, indicating the record has been created.
+
+```
+{
+    "meta": {
+        "organizationId": "77dbece8-9e08-4e32-acd2-2f1a89c50d9a"
+    },
+    "data": {
+        "id": "686ce1d55d9f906d1950c7b1",
+        "firstName": "Carl",
+        "lastName": "Newton",
+        "phone": [
+            "+44123456789",
+            "+440987864521"
+        ],
+        "email": [
+            "canewton_test@cisco.com"
+        ],
+        "temporaryId": [
+            "temp14725"
+        ],
+        "customerId": [
+            "1472589"
+        ],
+        "socialId": [
+            "social123"
+        ],
+        "aliases": [
+            "+44123456789",
+            "1472589",
+            "canewton_test@cisco.com",
+            "+440987864521",
+            "temp14725",
+            "social123"
+        ]
+    }
+}
+```
 
 ### Enable Customer Journey Widget on an Agent Desktop
 
