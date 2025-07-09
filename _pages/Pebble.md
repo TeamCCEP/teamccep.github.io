@@ -163,3 +163,17 @@ Result: **`true`**
 <!-- {%endraw%} -->
 
 <img style="border: 1px solid grey;" src="/assets/images/Pebbleplayground/Vmtimeout.png" height="300" />
+
+# Last X Digits
+
+This is a useful expression to get the last few digits of a number.  "Is your correct number the one ending in 5408?".  The below expression assumes the number is stored in a variable called phone0, and you want the last four digits.
+
+<!-- {%raw%} -->
+
+Expression: **`{{phone0 | slice(phone0 | length-4,phone0 | length)}}`**
+
+Result: **`5408`**
+
+<!-- {%endraw%} -->
+
+<img style="border: 1px solid grey;" src="/assets/images/Pebbleplayground/last4.png" height="300" />
