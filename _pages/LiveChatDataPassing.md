@@ -10,7 +10,7 @@ layout: post
 
 Below I will take you through three simple steps to pass data, with a fourth step, and possibly even more steps, that are left up to you, which is how you want to work with the data you are passed from the website.  E.g., Do you just greet them by name? (what I will show).  Or, will you perform a data dip on some piece of data passed over inside of your WxConnect flow?
 
-The following help document is all we have to go off of: https://docs.imi.chat/reference/imichatwidgetinit, and because it's insufficient to get a solution working, that is why I am writing this helpful tutorial for you (and me!).
+The following help document is all we have to go off of: [https://docs.imi.chat/reference/imichatwidgetinit](https://docs.imi.chat/reference/imichatwidgetinit), and because it's insufficient to get a solution working, that is why I am writing this helpful tutorial for you (and me!).
 
 # Step 1 - Modify the Default Installtion Code
 
@@ -78,7 +78,7 @@ And with that, you now have the two pieces of data in your flow and ready to wor
 
 # Step 4 - Say Hello!
 
-I will greet the chat user by name, in a very simple manner, just to show one simple usage of the custom variables.  This is in the 
+I will greet the chat user by name, in a very simple manner, just to show one simple usage of the custom variables.  This is in the node which sends a message back to the chat user.
 
 <img style="border: 1px solid grey;" src="/assets/images/LiveChatDataPassing/say-hello.png" width="100%" />
 
