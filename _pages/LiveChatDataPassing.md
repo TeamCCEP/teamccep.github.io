@@ -49,7 +49,7 @@ const wait_code = setInterval(() => {
 }, 250);
 ~~~
 
-If you want to see this custom code in the context of the overall website, I have an example here: https://github.com/avholloway/www.avholloway.com/blob/master/chat/index.html
+If you want to see this custom code in the context of the overall website, I have an example [here](https://github.com/avholloway/www.avholloway.com/blob/master/chat/index.html).
 
 # Step 2 - WxConnect Flow Variables
 
