@@ -29,7 +29,7 @@
       "description": "",
       "id": "",
       "type": "JSON",
-      "value": "{\n    \"global_variable\": {\n        \"id\": \"a5a17d5d-867e-4342-b14e-34952e32a5c5\",\n        \"name\": \"webex_access_token\"\n    },\n    \"service_app\": {\n        \"client_id\": \"C0766ed23ac943ab06c682fa43c5910edafa34251ced4373ba2f14a9b31a22d80\",\n        \"client_secret\": \"75345d12b455c5371e8bd60d9fb1facd895c85b1a87768e7d877a33fd523e30b\",\n        \"refresh_token\": \"YzY1NGNjODgtNmY1NC00ZTE0LThkMTQtNWQ5MjQ0YTY0MzhmNzYwN2NjOWEtMmQy_P0A1_415ba67b-2a78-4aa5-9ff9-6563c37d825d\"\n    }\n}",
+      "value": "{\n    \"global_variable\": {\n        \"id\": \"a5a1d5d-867e-4342-b14e-34952e32a5c\",\n        \"name\": \"webex_access_token\"\n    },\n    \"service_app\": {\n        \"client_id\": \"C0766ed23ac943ab06c682fa43c910edafa34251ced4373ba2f14a9b31a22d8\",\n        \"client_secret\": \"75345d12b45c5371e8bd60d9fb1facd895c85b1a87768e7d877a33fd523e30\",\n        \"refresh_token\": \"YzY1NGNjODgtNmY1NC00ZTE0LThkMTQtNWQMjQ0YTY0MzhmNzYwN2NjOWEtMmQy_P0A1_415ba67b-2a78-4aa5-9ff9-6563c37d825d\"\n    }\n}",
       "isSecure": false,
       "isCAD": false,
       "desktopLabel": "",
