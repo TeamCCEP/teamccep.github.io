@@ -79,7 +79,7 @@ What we need is, a subflow, so it's reusable by all Flows, that will refresh our
 I have already created this subflow for you, we just need to import it, and tweak it a little.
 
 1. Control Hub > Contact Center > Flows > Subflows > Manage > Create > Import
-   1. Import the file from the download link
+   1. Import the file from this [folder](https://github.com/TeamCCEP/teamccep.github.io/tree/master/assets/files/WebexAPIFromWxCC)
 2. Now with the Flow Designer open, perform the following:
    1. Edit Flow variable `params` with the values from your notes:
       1. `global_variable`
@@ -99,7 +99,7 @@ The main flow will use the Global Variable to gain access to the current access 
 I have already created this main flow for you, we just need to import it, and tweak it a little.
 
 1. Control Hub > Contact Center > Flows > Manage > Create > Import
-   1. Import the file from this [download link](/assets/files/WebexAPIFromWxCC/working_with_webex_api.json)
+   1. Import the file from this [folder](https://github.com/TeamCCEP/teamccep.github.io/tree/master/assets/files/WebexAPIFromWxCC)
 2. Now with the Flow Designer open, perform the following:
    1. Update the flow variable `target_user` with an email address of a user in your Org
    2. Double check your Global Variable to make sure your Webex API Token one is in the flow, if not, add it
