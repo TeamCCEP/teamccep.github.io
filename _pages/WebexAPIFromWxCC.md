@@ -81,12 +81,14 @@ I have already created this subflow for you, we just need to import it, and twea
 1. Control Hub > Contact Center > Flows > Subflows > Manage > Create > Import
    1. Import the file from the download link
 2. Now with the Flow Designer open, perform the following:
-   1. Edit Flow variables with the values from your notes:
-      1. `global_variable_id`
-      2. `global_variable_name`
-      3. `client_id`
-      4. `client_secret`
-      5. `refresh_token`
+   1. Edit Flow variable `params` with the values from your notes:
+      1. `global_variable`
+         1. `id`
+         2. `name`
+      2. `service_app`
+         1. `client_id`
+         2. `client_secret`
+         3. `refresh_token`
    2. Update the HTTP Request activity with name `UpdateGlobalVariable` to use your connector from the previous section
    3. Save, Validate & Publish
 
