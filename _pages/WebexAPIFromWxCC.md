@@ -81,14 +81,7 @@ I have already created this subflow for you, we just need to import it, and twea
 1. Control Hub > Contact Center > Flows > Subflows > Manage > Create > Import
    1. Import the file from this [folder](https://github.com/TeamCCEP/teamccep.github.io/tree/master/assets/files/WebexAPIFromWxCC)
 2. Now with the Flow Designer open, perform the following:
-   1. Edit Flow variable `params` with the values from your notes:
-      1. `global_variable`
-         1. `id`
-         2. `name`
-      2. `service_app`
-         1. `client_id`
-         2. `client_secret`
-         3. `refresh_token`
+   1. Edit Flow variable `params` with the values from your notes
    2. Update the HTTP Request activity with name `UpdateGlobalVariable` to use your connector from the previous section
    3. Save, Validate & Publish
 
