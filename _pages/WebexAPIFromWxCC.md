@@ -99,7 +99,7 @@ The main flow will use the Global Variable to gain access to the current access 
 I have already created this main flow for you, we just need to import it, and tweak it a little.
 
 1. Control Hub > Contact Center > Flows > Manage > Create > Import
-   1. Import the file from this [download link](/assests/files/WebexAPIFromWxCC/working_with_webex_api.json)
+   1. Import the file from this [download link](/assets/files/WebexAPIFromWxCC/working_with_webex_api.json)
 2. Now with the Flow Designer open, perform the following:
    1. Update the flow variable `target_user` with an email address of a user in your Org
    2. Double check your Global Variable to make sure your Webex API Token one is in the flow, if not, add it
