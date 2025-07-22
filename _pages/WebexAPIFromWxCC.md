@@ -21,8 +21,8 @@ layout: post
    4. Contact email is whatever email you want to use
    5. The scopes are important and I cannot tell you what to check, but basically you need to know a few things:
       1. You cannot select all of them, there's a limit to it
-      2. Each API endpoint doc page lists which scopes are required, so use that as your guide
-         1. For me, I am going to select `spark-admin:people_read` so I can lookup users in Webex
+      2. Each API endpoint doc page lists which scopes are required, so use that as your guide, to which and how many scopes to check off
+         1. For me, I am going to only select `spark-admin:people_read`, so that I can lookup users in the directory
    6. Click to Add Service App
 4. Copy your Client Secret to some place safe, as you'll need it in the future, and you can never get it again
 
@@ -79,7 +79,7 @@ What we need is, a subflow, so it's reusable by all Flows, that will refresh our
 I have already created this subflow for you, we just need to import it, and tweak it a little.
 
 1. Control Hub > Contact Center > Flows > Subflows > Manage > Create > Import
-   1. Import the file from the download link above
+   1. Import the file from the download link
 2. Now with the Flow Designer open, perform the following:
    1. Edit Flow variables with the values from your notes:
       1. `global_variable_id`
@@ -92,13 +92,21 @@ I have already created this subflow for you, we just need to import it, and twea
 
 ## Create a Main Flow
 
-The main flow will use the Global Variable to gain access to the access token, so that you can call Webex APIs, but it will also trigger the sublow from the previous section, just in case we receive a 401 Unauthorized response.
+The main flow will use the Global Variable to gain access to the current access token, so that you can call Webex APIs, but the main flow will also trigger the sublow above, as needed, just in case we receive a 401 Unauthorized response from the API.
 
 I have already created this main flow for you, we just need to import it, and tweak it a little.
 
 1. Control Hub > Contact Center > Flows > Manage > Create > Import
-   1. Import the file from the download link above
+   1. Import the file from the download link
 2. Now with the Flow Designer open, perform the following:
-   1. 
+   1. Update the flow variable `target_user` with an email address of a user in your Org
+   2. Double check your Global Variable to make sure your Webex API Token one is in the flow, if not, add it
+   3. Double check your Subflow activity to make sure it's your Subflow from above
+      1. There should be one single output mapping from `access_token` to your Global Variable holding your access token
+   4. Save, Validate & Publish
+
+## Test
+
+You should now be ready to attach this main flow to an Entry Point and phone number and then test it.
 
 # Configure WxConnect Flow Custom Nodes
