@@ -1,0 +1,824 @@
+{
+  "orgId": "415ba67b-2a78-4aa5-9ff9-6563c37d825d",
+  "version": 17,
+  "id": "687fa195e6bd86466557ba1b",
+  "flowType": "SUBFLOW",
+  "name": "webex_api_refresh_token",
+  "description": "",
+  "comment": "",
+  "variables": [
+    {
+      "name": "access_token",
+      "description": "",
+      "id": "",
+      "type": "STRING",
+      "value": "",
+      "isSecure": false,
+      "isCAD": false,
+      "desktopLabel": "",
+      "isAgentEditable": false,
+      "source": "SUBFLOW_OUTPUT",
+      "isReportable": false,
+      "overwrite": false,
+      "isExternalized": false,
+      "resourceType": "",
+      "__typename": "UIUserVariable"
+    },
+    {
+      "name": "params",
+      "description": "",
+      "id": "",
+      "type": "JSON",
+      "value": "{\n    \"global_variable\": {\n        \"id\": \"a5a17d5d-867e-4342-b14e-34952e32a5c5\",\n        \"name\": \"webex_access_token\"\n    },\n    \"service_app\": {\n        \"client_id\": \"C0766ed23ac943ab06c682fa43c5910edafa34251ced4373ba2f14a9b31a22d80\",\n        \"client_secret\": \"75345d12b455c5371e8bd60d9fb1facd895c85b1a87768e7d877a33fd523e30b\",\n        \"refresh_token\": \"YzY1NGNjODgtNmY1NC00ZTE0LThkMTQtNWQ5MjQ0YTY0MzhmNzYwN2NjOWEtMmQy_P0A1_415ba67b-2a78-4aa5-9ff9-6563c37d825d\"\n    }\n}",
+      "isSecure": false,
+      "isCAD": false,
+      "desktopLabel": "",
+      "isAgentEditable": false,
+      "source": "",
+      "isReportable": false,
+      "overwrite": false,
+      "isExternalized": false,
+      "resourceType": "",
+      "__typename": "UIUserVariable"
+    }
+  ],
+  "process": {
+    "activities": {
+      "bde2fad7-cf5d-471f-95b1-8217f5734931": {
+        "id": "bde2fad7-cf5d-471f-95b1-8217f5734931",
+        "name": "StartSubflow",
+        "group": "start-subflow",
+        "properties": {
+          "name": "StartSubflow",
+          "activityName": "NewSubFlowStart",
+          "activityId": "start-subflow",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "d9c0b222-2de8-4929-91ad-fdbae3c685b9": {
+        "id": "d9c0b222-2de8-4929-91ad-fdbae3c685b9",
+        "name": "RefreshAccessToken",
+        "group": "action",
+        "properties": {
+          "httpRequestHeaders": {},
+          "httpRequestMethod_type": null,
+          "authenticated": false,
+          "httpRequestBody": "{\n  \"grant_type\": \"refresh_token\",\n  \"client_id\": \"{{ params.service_app.client_id }}\",\n  \"client_secret\": \"{{ params.service_app.client_secret }}\",\n  \"refresh_token\": \"{{ params.service_app.refresh_token }}\"\n}",
+          "httpRequestPath": null,
+          "httpRequestUrl": "https://webexapis.com/v1/access_token",
+          "connectorId": null,
+          "httpRequestBodyFiles": null,
+          "contentType_name": "JSON",
+          "activityId": "http-request-v2",
+          "httpResponseTimeout": "2000",
+          "httpRequestBodyFormData": null,
+          "httpContentType": "Application/JSON",
+          "_renderRequestTimestamp": 1753194900838,
+          "contentType": "JSON",
+          "httpQueryParameters": {},
+          "retryAttempts": 1,
+          "httpRequestBodyGQL": null,
+          "contentType:name": "JSON",
+          "contentType_type": null,
+          "activityName": "http-request-v2",
+          "httpContentType_type": null,
+          "connectorId:name": null,
+          "httpRequestMethod:type": null,
+          "httpRequestMethod_name": "POST",
+          "httpRequestMethod": "POST",
+          "httpContentType:name": "Application/JSON",
+          "outputVariableArray": [
+            {
+              "outputVariable": "access_token",
+              "jsonPathExp": "$.access_token"
+            }
+          ],
+          "httpContentType:type": null,
+          "contentType:type": null,
+          "name": "RefreshAccessToken",
+          "httpRequestMethod:name": "POST",
+          "flowDecryptAccess": false,
+          "connectorId_name": null,
+          "httpContentType_name": "Application/JSON"
+        }
+      },
+      "616ee1e5-e2e3-4d57-93a1-08e7004d4218": {
+        "id": "616ee1e5-e2e3-4d57-93a1-08e7004d4218",
+        "name": "WasObtained",
+        "group": "enum-gateway",
+        "properties": {
+          "name": "WasObtained",
+          "activityName": "condition-activity",
+          "activityId": "condition-activity",
+          "expression": "{{ access_token is not empty }}",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "0e614460-137a-4d0c-b76b-b490f419f71f": {
+        "id": "0e614460-137a-4d0c-b76b-b490f419f71f",
+        "name": "UpdateGlobalVariable",
+        "group": "action",
+        "properties": {
+          "httpRequestHeaders": {},
+          "httpRequestMethod_type": null,
+          "authenticated": true,
+          "httpRequestBody": "{\n  \"id\": \"{{ params.global_variable.id }}\",\n  \"name\": \"{{ params.global_variable.id }}\",\n  \"active\": true,\n  \"variableType\": \"String\",\n  \"defaultValue\": \"{{ access_token }}\",\n  \"reportable\": false,\n  \"agentViewable\": false,\n  \"agentEditable\": false\n}",
+          "httpRequestPath": "/organization/{{ NewPhoneContact.OrgId }}/cad-variable/{{ params.global_variable.id }}",
+          "httpRequestUrl": null,
+          "connectorId": "5c7c2677-c50c-4c2f-8064-e5fea19e871d",
+          "httpRequestBodyFiles": null,
+          "activityId": "http-request-v2",
+          "httpResponseTimeout": 2000,
+          "httpRequestBodyFormData": null,
+          "httpContentType": "Application/JSON",
+          "_renderRequestTimestamp": 1753194900838,
+          "httpQueryParameters": {},
+          "retryAttempts": 1,
+          "httpRequestBodyGQL": null,
+          "activityName": "http-request-v2",
+          "httpContentType_type": null,
+          "connectorId:name": "wxcc_api_access",
+          "httpRequestMethod:type": null,
+          "httpRequestMethod_name": "PUT",
+          "httpRequestMethod": "PUT",
+          "httpContentType:name": "Application/JSON",
+          "outputVariableArray": [
+            {
+              "outputVariable": "",
+              "jsonPathExp": ""
+            }
+          ],
+          "connectorId_type": null,
+          "httpContentType:type": null,
+          "connectorId:type": null,
+          "name": "UpdateGlobalVariable",
+          "httpRequestMethod:name": "PUT",
+          "flowDecryptAccess": false,
+          "connectorId_name": "wxcc_api_access",
+          "httpContentType_name": "Application/JSON"
+        }
+      },
+      "95a6585e-41f1-4d15-a067-a46a8accc9de": {
+        "id": "95a6585e-41f1-4d15-a067-a46a8accc9de",
+        "name": "Failure",
+        "group": "end",
+        "properties": {
+          "name": "Failure",
+          "activityName": "end-subflow",
+          "activityId": "end-subflow",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "7282cb8c-84d8-4534-973a-77f4ea7a36c9": {
+        "id": "7282cb8c-84d8-4534-973a-77f4ea7a36c9",
+        "name": "Success",
+        "group": "end",
+        "properties": {
+          "name": "Success",
+          "activityName": "end-subflow",
+          "activityId": "end-subflow",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      }
+    },
+    "links": [
+      {
+        "id": "e869a996-7cc7-4fc8-8690-dc58b0afa219",
+        "sourceActivityId": "bde2fad7-cf5d-471f-95b1-8217f5734931",
+        "targetActivityId": "d9c0b222-2de8-4929-91ad-fdbae3c685b9",
+        "conditionExpr": "out",
+        "properties": {
+          "value": "out"
+        }
+      },
+      {
+        "id": "5463fca0-c38a-45d5-bac4-324352ecc88a",
+        "sourceActivityId": "616ee1e5-e2e3-4d57-93a1-08e7004d4218",
+        "targetActivityId": "0e614460-137a-4d0c-b76b-b490f419f71f",
+        "conditionExpr": "true",
+        "properties": {
+          "value": "true"
+        }
+      },
+      {
+        "id": "bf8ff6f8-8514-4fea-b13e-0441478e78be",
+        "sourceActivityId": "616ee1e5-e2e3-4d57-93a1-08e7004d4218",
+        "targetActivityId": "95a6585e-41f1-4d15-a067-a46a8accc9de",
+        "conditionExpr": "false",
+        "properties": {
+          "value": "false"
+        }
+      },
+      {
+        "id": "8ca78cec-6584-4153-99ce-d5186a707464",
+        "sourceActivityId": "0e614460-137a-4d0c-b76b-b490f419f71f",
+        "targetActivityId": "7282cb8c-84d8-4534-973a-77f4ea7a36c9",
+        "conditionExpr": "default",
+        "properties": {
+          "value": "default"
+        }
+      },
+      {
+        "id": "3e113f7b-04fb-4ab9-b63f-2c1cc2ba3207",
+        "sourceActivityId": "d9c0b222-2de8-4929-91ad-fdbae3c685b9",
+        "targetActivityId": "616ee1e5-e2e3-4d57-93a1-08e7004d4218",
+        "conditionExpr": "default",
+        "properties": {
+          "value": "default"
+        }
+      }
+    ]
+  },
+  "diagram": {
+    "widgets": {
+      "bde2fad7-cf5d-471f-95b1-8217f5734931": {
+        "id": "c1d79551-5252-4f56-b3a8-6100f08dc582",
+        "type": "start-subflow",
+        "widgetType": "activity",
+        "label": "New Activity Widget in Diagram",
+        "point": {
+          "x": -160,
+          "y": 100
+        },
+        "ports": [
+          {
+            "portId": "1d7dde6d-4392-4903-8752-0eea9b5738aa",
+            "isSourcePort": false,
+            "linkId": "df2b3cf1-5406-4e4b-9337-d8a7f0677244",
+            "type": "arrow",
+            "links": [
+              "df2b3cf1-5406-4e4b-9337-d8a7f0677244"
+            ],
+            "properties": {
+              "x": 6.999996948242256,
+              "name": "out",
+              "y": 117.9999877929688,
+              "label": "out",
+              "alignment": "right"
+            }
+          }
+        ],
+        "properties": {
+          "name": "StartSubflow",
+          "activityName": "NewSubFlowStart",
+          "activityId": "start-subflow",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "d9c0b222-2de8-4929-91ad-fdbae3c685b9": {
+        "id": "38348c3d-1766-4675-ae00-657c22740e9f",
+        "type": "action",
+        "widgetType": "activity",
+        "label": "New Activity Widget in Diagram",
+        "point": {
+          "x": 100,
+          "y": 100
+        },
+        "ports": [
+          {
+            "portId": "ee18f21a-c15e-4596-a951-32efb60c5f84",
+            "isSourcePort": true,
+            "linkId": "df2b3cf1-5406-4e4b-9337-d8a7f0677244",
+            "type": "arrow",
+            "links": [
+              "df2b3cf1-5406-4e4b-9337-d8a7f0677244"
+            ],
+            "properties": {
+              "x": 91.99999694824226,
+              "name": "in",
+              "y": 117.9999877929688,
+              "label": "in",
+              "alignment": "left"
+            }
+          },
+          {
+            "portId": "2669216d-a7a9-4ecc-a776-c4cdcef15a26",
+            "isSourcePort": false,
+            "linkId": "f043490d-1708-46cc-8844-128fe34af39b",
+            "type": "arrow",
+            "links": [
+              "f043490d-1708-46cc-8844-128fe34af39b"
+            ],
+            "properties": {
+              "x": 266.99999694824226,
+              "name": "default",
+              "y": 117.9999877929688,
+              "label": "default",
+              "alignment": "right"
+            }
+          }
+        ],
+        "properties": {
+          "httpRequestHeaders": {},
+          "authenticated": false,
+          "httpRequestBody": "{\n  \"grant_type\": \"refresh_token\",\n  \"client_id\": \"{{ params.service_app.client_id }}\",\n  \"client_secret\": \"{{ params.service_app.client_secret }}\",\n  \"refresh_token\": \"{{ params.service_app.refresh_token }}\"\n}",
+          "httpRequestPath": null,
+          "httpRequestUrl": "https://webexapis.com/v1/access_token",
+          "connectorId": null,
+          "httpRequestBodyFiles": null,
+          "activityId": "http-request-v2",
+          "httpResponseTimeout": "2000",
+          "httpRequestBodyFormData": null,
+          "httpContentType": "Application/JSON",
+          "_renderRequestTimestamp": 1753194900838,
+          "contentType": "JSON",
+          "httpQueryParameters": {},
+          "retryAttempts": 1,
+          "httpRequestBodyGQL": null,
+          "contentType:name": "JSON",
+          "activityName": "http-request-v2",
+          "connectorId:name": null,
+          "httpRequestMethod:type": null,
+          "httpRequestMethod": "POST",
+          "httpContentType:name": "Application/JSON",
+          "outputVariableArray": [
+            {
+              "outputVariable": "access_token",
+              "jsonPathExp": "$.access_token"
+            }
+          ],
+          "httpContentType:type": null,
+          "contentType:type": null,
+          "name": "RefreshAccessToken",
+          "httpRequestMethod:name": "POST",
+          "flowDecryptAccess": false
+        }
+      },
+      "e869a996-7cc7-4fc8-8690-dc58b0afa219": {
+        "id": "df2b3cf1-5406-4e4b-9337-d8a7f0677244",
+        "type": "arrow",
+        "widgetType": "link",
+        "label": "[object Object]",
+        "properties": {
+          "curvyness": 50,
+          "selected": false,
+          "color": "#545454",
+          "points": [
+            {
+              "id": "e9ec3ef6-987b-4597-8cdd-a5479e8056d7",
+              "type": "point",
+              "x": 15.499996948242256,
+              "y": 126.4999877929688
+            },
+            {
+              "id": "8b90555f-78a5-4396-8775-f74b865a9c25",
+              "type": "point",
+              "x": 100.49999694824226,
+              "y": 126.4999877929688
+            }
+          ],
+          "width": 2,
+          "selectedColor": "#007aa3"
+        },
+        "points": [],
+        "sourcePort": {
+          "id": "1d7dde6d-4392-4903-8752-0eea9b5738aa",
+          "activeWidgetId": "c1d79551-5252-4f56-b3a8-6100f08dc582",
+          "point": {
+            "x": 15,
+            "y": 126
+          }
+        },
+        "targetPort": {
+          "id": "ee18f21a-c15e-4596-a951-32efb60c5f84",
+          "activeWidgetId": "38348c3d-1766-4675-ae00-657c22740e9f",
+          "point": {
+            "x": 100,
+            "y": 126
+          }
+        }
+      },
+      "616ee1e5-e2e3-4d57-93a1-08e7004d4218": {
+        "id": "6746cb6f-830d-4a60-8a8a-9c38987e4304",
+        "type": "enum-gateway",
+        "widgetType": "activity",
+        "label": "New Activity Widget in Diagram",
+        "point": {
+          "x": 360,
+          "y": 100
+        },
+        "ports": [
+          {
+            "portId": "c1ad78bf-b426-468c-bc70-0198ba372506",
+            "isSourcePort": true,
+            "linkId": "f043490d-1708-46cc-8844-128fe34af39b",
+            "type": "arrow",
+            "links": [
+              "f043490d-1708-46cc-8844-128fe34af39b"
+            ],
+            "properties": {
+              "x": 351.99999694824226,
+              "name": "in",
+              "y": 113.9999877929688,
+              "label": "in",
+              "alignment": "left"
+            }
+          },
+          {
+            "portId": "30a399c0-1546-4fa7-9f16-c922e535bb83",
+            "isSourcePort": false,
+            "linkId": null,
+            "type": "arrow",
+            "links": [],
+            "properties": {
+              "x": 527.5000122070313,
+              "name": "error",
+              "y": 293.8231079101563,
+              "label": "error",
+              "alignment": "right"
+            }
+          },
+          {
+            "portId": "c8ae9e45-75a8-4446-a9d4-1bbc6d936d16",
+            "isSourcePort": false,
+            "linkId": "1e8dd07a-c4e9-403f-873b-4d11c40eced7",
+            "type": "arrow",
+            "links": [
+              "1e8dd07a-c4e9-403f-873b-4d11c40eced7"
+            ],
+            "properties": {
+              "x": 527.5000122070313,
+              "name": "true",
+              "y": 198.5262329101563,
+              "label": "true",
+              "alignment": "right"
+            }
+          },
+          {
+            "portId": "74b04360-1580-4bf2-ae3c-4505b1666104",
+            "isSourcePort": false,
+            "linkId": "87001f09-95d9-448d-b527-65ef271a6baa",
+            "type": "arrow",
+            "links": [
+              "87001f09-95d9-448d-b527-65ef271a6baa"
+            ],
+            "properties": {
+              "x": 527.5000122070313,
+              "name": "false",
+              "y": 234.1043579101563,
+              "label": "false",
+              "alignment": "right"
+            }
+          }
+        ],
+        "properties": {
+          "name": "WasObtained",
+          "activityName": "condition-activity",
+          "activityId": "condition-activity",
+          "expression": "{{ access_token is not empty }}",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "0e614460-137a-4d0c-b76b-b490f419f71f": {
+        "id": "3019c32d-56b7-4fba-8e4f-ddf6bb180287",
+        "type": "action",
+        "widgetType": "activity",
+        "label": "New Activity Widget in Diagram",
+        "point": {
+          "x": 620,
+          "y": 100
+        },
+        "ports": [
+          {
+            "portId": "5774bcfd-9f29-48f6-bda4-6bd915cdf7dc",
+            "isSourcePort": true,
+            "linkId": "1e8dd07a-c4e9-403f-873b-4d11c40eced7",
+            "type": "arrow",
+            "links": [
+              "1e8dd07a-c4e9-403f-873b-4d11c40eced7"
+            ],
+            "properties": {
+              "x": 612.0000122070314,
+              "name": "in",
+              "y": 117.9999877929688,
+              "label": "in",
+              "alignment": "left"
+            }
+          },
+          {
+            "portId": "27eafec8-865c-4d25-8972-e6f5e3b85100",
+            "isSourcePort": false,
+            "linkId": "0172658d-6c2f-44df-a72a-bc5d2fe67d21",
+            "type": "arrow",
+            "links": [
+              "0172658d-6c2f-44df-a72a-bc5d2fe67d21"
+            ],
+            "properties": {
+              "x": 787.0000122070314,
+              "name": "default",
+              "y": 117.9999877929688,
+              "label": "default",
+              "alignment": "right"
+            }
+          }
+        ],
+        "properties": {
+          "httpRequestHeaders": {},
+          "authenticated": true,
+          "httpRequestBody": "{\n  \"id\": \"{{ params.global_variable.id }}\",\n  \"name\": \"{{ params.global_variable.id }}\",\n  \"active\": true,\n  \"variableType\": \"String\",\n  \"defaultValue\": \"{{ access_token }}\",\n  \"reportable\": false,\n  \"agentViewable\": false,\n  \"agentEditable\": false\n}",
+          "httpRequestPath": "/organization/{{ NewPhoneContact.OrgId }}/cad-variable/{{ params.global_variable.id }}",
+          "httpRequestUrl": null,
+          "connectorId": "5c7c2677-c50c-4c2f-8064-e5fea19e871d",
+          "httpRequestBodyFiles": null,
+          "activityId": "http-request-v2",
+          "httpResponseTimeout": 2000,
+          "httpRequestBodyFormData": null,
+          "httpContentType": "Application/JSON",
+          "_renderRequestTimestamp": 1753194900838,
+          "httpQueryParameters": {},
+          "retryAttempts": 1,
+          "httpRequestBodyGQL": null,
+          "activityName": "http-request-v2",
+          "connectorId:name": "wxcc_api_access",
+          "httpRequestMethod:type": null,
+          "httpRequestMethod": "PUT",
+          "httpContentType:name": "Application/JSON",
+          "outputVariableArray": [
+            {
+              "outputVariable": "",
+              "jsonPathExp": ""
+            }
+          ],
+          "httpContentType:type": null,
+          "connectorId:type": null,
+          "name": "UpdateGlobalVariable",
+          "httpRequestMethod:name": "PUT",
+          "flowDecryptAccess": false
+        }
+      },
+      "5463fca0-c38a-45d5-bac4-324352ecc88a": {
+        "id": "1e8dd07a-c4e9-403f-873b-4d11c40eced7",
+        "type": "arrow",
+        "widgetType": "link",
+        "label": "[object Object]",
+        "properties": {
+          "curvyness": 50,
+          "selected": false,
+          "color": "#545454",
+          "points": [
+            {
+              "id": "08b4384a-6e9e-4998-8aea-e1d2d586c6c7",
+              "type": "point",
+              "x": 536.0000122070313,
+              "y": 207.0262329101563
+            },
+            {
+              "id": "88b6591e-567c-4047-b073-047d15c6f899",
+              "type": "point",
+              "x": 620.5000122070315,
+              "y": 126.4999877929688
+            }
+          ],
+          "width": 2,
+          "selectedColor": "#007aa3"
+        },
+        "points": [],
+        "sourcePort": {
+          "id": "c8ae9e45-75a8-4446-a9d4-1bbc6d936d16",
+          "activeWidgetId": "6746cb6f-830d-4a60-8a8a-9c38987e4304",
+          "point": {
+            "x": 536,
+            "y": 207
+          }
+        },
+        "targetPort": {
+          "id": "5774bcfd-9f29-48f6-bda4-6bd915cdf7dc",
+          "activeWidgetId": "3019c32d-56b7-4fba-8e4f-ddf6bb180287",
+          "point": {
+            "x": 620,
+            "y": 126
+          }
+        }
+      },
+      "95a6585e-41f1-4d15-a067-a46a8accc9de": {
+        "id": "4445ded4-ea26-4597-b649-7764c3dc14a3",
+        "type": "end",
+        "widgetType": "activity",
+        "label": "New Activity Widget in Diagram",
+        "point": {
+          "x": 620,
+          "y": 300
+        },
+        "ports": [
+          {
+            "portId": "f7647627-3574-4a21-9f96-224b7767d0b7",
+            "isSourcePort": true,
+            "linkId": "87001f09-95d9-448d-b527-65ef271a6baa",
+            "type": "arrow",
+            "links": [
+              "87001f09-95d9-448d-b527-65ef271a6baa"
+            ],
+            "properties": {
+              "x": 612.0000122070313,
+              "name": "in",
+              "y": 317.9999877929688,
+              "label": "in",
+              "alignment": "left"
+            }
+          }
+        ],
+        "properties": {
+          "name": "Failure",
+          "activityName": "end-subflow",
+          "activityId": "end-subflow",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "bf8ff6f8-8514-4fea-b13e-0441478e78be": {
+        "id": "87001f09-95d9-448d-b527-65ef271a6baa",
+        "type": "arrow",
+        "widgetType": "link",
+        "label": "[object Object]",
+        "properties": {
+          "curvyness": 50,
+          "selected": false,
+          "color": "#545454",
+          "points": [
+            {
+              "id": "7583decc-63f4-4042-b1f5-047d453342de",
+              "type": "point",
+              "x": 536.0000122070313,
+              "y": 242.6043579101563
+            },
+            {
+              "id": "8bde6bdb-4aad-40dd-a3b1-eef071d1f5b8",
+              "type": "point",
+              "x": 620.5000122070313,
+              "y": 326.4999877929688
+            }
+          ],
+          "width": 2,
+          "selectedColor": "#007aa3"
+        },
+        "points": [],
+        "sourcePort": {
+          "id": "74b04360-1580-4bf2-ae3c-4505b1666104",
+          "activeWidgetId": "6746cb6f-830d-4a60-8a8a-9c38987e4304",
+          "point": {
+            "x": 536,
+            "y": 242
+          }
+        },
+        "targetPort": {
+          "id": "f7647627-3574-4a21-9f96-224b7767d0b7",
+          "activeWidgetId": "4445ded4-ea26-4597-b649-7764c3dc14a3",
+          "point": {
+            "x": 620,
+            "y": 326
+          }
+        }
+      },
+      "7282cb8c-84d8-4534-973a-77f4ea7a36c9": {
+        "id": "ab01a503-083d-4755-a46e-81e633c23731",
+        "type": "end",
+        "widgetType": "activity",
+        "label": "New Activity Widget in Diagram",
+        "point": {
+          "x": 880,
+          "y": 100
+        },
+        "ports": [
+          {
+            "portId": "1d1b443b-5ee0-433e-84f1-e51e7b350a86",
+            "isSourcePort": true,
+            "linkId": "0172658d-6c2f-44df-a72a-bc5d2fe67d21",
+            "type": "arrow",
+            "links": [
+              "0172658d-6c2f-44df-a72a-bc5d2fe67d21"
+            ],
+            "properties": {
+              "x": 872.0000122070313,
+              "name": "in",
+              "y": 117.9999877929688,
+              "label": "in",
+              "alignment": "left"
+            }
+          }
+        ],
+        "properties": {
+          "name": "Success",
+          "activityName": "end-subflow",
+          "activityId": "end-subflow",
+          "_renderRequestTimestamp": 1753194900838
+        }
+      },
+      "8ca78cec-6584-4153-99ce-d5186a707464": {
+        "id": "0172658d-6c2f-44df-a72a-bc5d2fe67d21",
+        "type": "arrow",
+        "widgetType": "link",
+        "label": "[object Object]",
+        "properties": {
+          "curvyness": 50,
+          "selected": false,
+          "color": "#545454",
+          "points": [
+            {
+              "id": "5891f3aa-8eb3-44d0-9c70-07424e4e571d",
+              "type": "point",
+              "x": 795.5000122070315,
+              "y": 126.4999877929688
+            },
+            {
+              "id": "c3a21517-9aad-423f-9378-9e42f5a91020",
+              "type": "point",
+              "x": 880.5000122070313,
+              "y": 126.4999877929688
+            }
+          ],
+          "width": 2,
+          "selectedColor": "#007aa3"
+        },
+        "points": [],
+        "sourcePort": {
+          "id": "27eafec8-865c-4d25-8972-e6f5e3b85100",
+          "activeWidgetId": "3019c32d-56b7-4fba-8e4f-ddf6bb180287",
+          "point": {
+            "x": 795,
+            "y": 126
+          }
+        },
+        "targetPort": {
+          "id": "1d1b443b-5ee0-433e-84f1-e51e7b350a86",
+          "activeWidgetId": "ab01a503-083d-4755-a46e-81e633c23731",
+          "point": {
+            "x": 880,
+            "y": 126
+          }
+        }
+      },
+      "3e113f7b-04fb-4ab9-b63f-2c1cc2ba3207": {
+        "id": "f043490d-1708-46cc-8844-128fe34af39b",
+        "type": "arrow",
+        "widgetType": "link",
+        "label": "[object Object]",
+        "properties": {
+          "curvyness": 50,
+          "selected": false,
+          "color": "#545454",
+          "points": [
+            {
+              "id": "e651960f-3583-456e-be64-1e2107870179",
+              "type": "point",
+              "x": 275.49999694824226,
+              "y": 126.4999877929688
+            },
+            {
+              "id": "8fb90fff-022a-488c-8b2f-cf14e96fe264",
+              "type": "point",
+              "x": 360.49999694824226,
+              "y": 122.4999877929688
+            }
+          ],
+          "width": 2,
+          "selectedColor": "#007aa3"
+        },
+        "points": [],
+        "sourcePort": {
+          "id": "2669216d-a7a9-4ecc-a776-c4cdcef15a26",
+          "activeWidgetId": "38348c3d-1766-4675-ae00-657c22740e9f",
+          "point": {
+            "x": 275,
+            "y": 126
+          }
+        },
+        "targetPort": {
+          "id": "c1ad78bf-b426-468c-bc70-0198ba372506",
+          "activeWidgetId": "6746cb6f-830d-4a60-8a8a-9c38987e4304",
+          "point": {
+            "x": 360,
+            "y": 122
+          }
+        }
+      }
+    },
+    "properties": {
+      "offsetX": 221.19999999999993,
+      "offsetY": -39.950000000000045,
+      "zoom": 100,
+      "gridSize": 20
+    }
+  },
+  "variableOrders": {
+    "pop-over": [],
+    "interaction-panel": []
+  },
+  "flowId": "6856cca600e13e73c56967cb",
+  "eventFlows": {
+    "eventsMap": {},
+    "properties": {
+      "zoom": null,
+      "__typename": "EventFlowProperties"
+    },
+    "__typename": "EventFlowMap"
+  },
+  "runtimeVariables": [],
+  "validating": true,
+  "persist": true,
+  "validationResults": [],
+  "createdBy": "admin@valkyrie2.wbx.ai",
+  "createdDate": "2025-07-22T14:35:01.586",
+  "lastModifiedBy": "admin@valkyrie2.wbx.ai",
+  "lastModifiedDate": "2025-07-22T14:35:01.586",
+  "settings": [],
+  "__typename": "FlowVersionExport"
+}
