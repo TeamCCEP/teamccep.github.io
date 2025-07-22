@@ -24,7 +24,7 @@ layout: post
       2. Each API endpoint doc page lists which scopes are required, so use that as your guide, to which and how many scopes to check off
          1. For me, I am going to only select `spark-admin:people_read`, so that I can lookup users in the directory
    6. Click to Add Service App
-4. Copy your Client Secret to some place safe, as you'll need it in the future, and you can never get it again
+4. Copy your Client ID and Secret to your notes
 
 ## Authorize the Service App
 
@@ -36,14 +36,10 @@ layout: post
 ## Grab an Access Token and Refresh Token
 
 1. At this point, you'll need to either refresh the Service App page you were on in the previous section, or just click off of it, and then back on to it, to see the new section titled "Org Authorizations"
+   1. If you don't see "Org Authorizations", click refresh again
 2. Select your Org Name from the drop down list
 3. Paste your Client Secret into the field below the org name, and generate tokens
-4. Copy your Refresh and Access tokens to the same place you pasted your Client Secret
-5. Grad your Client ID from this page while your at it, so you'll have four things in your notes:
-   1. Client ID
-   2. Client Secret
-   3. Refresh Token
-   4. Access Token
+4. Copy your Refresh and Access tokens to your notes
 
 # Configure WxCC Flow Designer
 
@@ -51,7 +47,7 @@ Now let's move to the WxCC specific configurations, where we'll setup a Global V
 
 ## Store Access Token in WxCC Global Variable
 
-When it comes to dynamic storage areas within WxCC, we don't have much, but we do have read/write capabilities with our Global Variables, so that's what we're going to use, to grab an access token, and also update it when it expires.
+When it comes to dynamic storage areas within WxCC, we don't have much, but we do have read/write capabilities with our Global Variables, so that's what we're going to use, to grab the current access token, and also update it when it expires.
 
 1. Control Hub > Contact Center > Flow > Global Variables > Create
    1. Name is something like "WEBEX_ACCESS_TOKEN"
