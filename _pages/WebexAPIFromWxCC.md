@@ -91,10 +91,15 @@ I have already created this main flow for you, we just need to import it, and tw
    1. Import the file from this [folder](https://github.com/TeamCCEP/teamccep.github.io/tree/master/assets/files/WebexAPIFromWxCC)
 2. Now with the Flow Designer open, perform the following:
    1. Update the flow variable `target_user` with an email address of a user in your Org
-   2. Double check your Global Variable to make sure your Webex API Token one is in the flow, if not, add it
-   3. Double check your Subflow activity to make sure it's your Subflow from above
-      1. There should be one single output mapping from `access_token` to your Global Variable holding your access token
-   4. Save, Validate & Publish
+   2. Double check your Global Variable to make sure your's is in the flow, and not mine: the one that came along with the import.
+      1. Most likely, you will need to swap out the Global Variable in the flow with your own, as the export/import of Global Variables is a bit weird, in that the system will let you import a flow which references a Global Variable which doesn't exist.
+      2. This means that you will need to double check three activities:
+         1. Your HTTP Request activity named `GetPersonDetails` to use your Global Variable name as the Bearer token.
+         2. Your Subflow activity named `RefreshTheToken` to map your Global Variable
+            1. There should be one single output mapping from `access_token` to your Global Variable holding your access token
+         3. Your Condition activity named `HaveAccessToken` to check your Global Variable
+         4. Then delete the Global Variable that came along with the import if you did all of that work to update it to your own
+   3. Save, Validate & Publish
 
 ## Test
 
