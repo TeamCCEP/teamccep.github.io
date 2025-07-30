@@ -194,25 +194,25 @@ We'll build a simple Webhook based flow for testing the integration.
 15. Double-click the Evaluate node to open its properties
     1.  Use the following code in the node:
 
-    ```javascript
-    const person_json = JSON.parse("$(n3.person)");
-    const person_name = person_json.displayName;
-    const person_status = person_json.status;
+```javascript
+const person_json = JSON.parse("$(n3.person)");
+const person_name = person_json.displayName;
+const person_status = person_json.status;
 
-    const debug_data = JSON.stringify({
-        "person_name": person_name,
-        "person_status": person_status,
-        "person_json": person_json
-    });
+const debug_data = JSON.stringify({
+    "person_name": person_name,
+    "person_status": person_status,
+    "person_json": person_json
+});
 
-    0;
-    ```
-    
-    2. Script Output is `0`
-    3. Branch Name is "Success"
-    4. Click Save to close the properties
-16. Click Make Live and wait until its Live
-17. Open Postman, or a similar app, and issue a POST request to your Webhook URL, with an empty JSON body of `{}`
-18. Go back to your Flow and click on the debugger, then click decrypt logs
-19. Find your transaction (there will likely only be one) and select it
-20. Look at your Evalute node's outcome and you should see the `debug_data` variable populated with data from the API call (you'll see some other variables there too)
+0;
+```
+
+    1. Script Output is `0`
+    2. Branch Name is "Success"
+    3. Click Save to close the properties
+1.  Click Make Live and wait until its Live
+2.  Open Postman, or a similar app, and issue a POST request to your Webhook URL, with an empty JSON body of `{}`
+3.  Go back to your Flow and click on the debugger, then click decrypt logs
+4.  Find your transaction (there will likely only be one) and select it
+5.  Look at your Evalute node's outcome and you should see the `debug_data` variable populated with data from the API call (you'll see some other variables there too)
