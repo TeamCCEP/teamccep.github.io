@@ -244,7 +244,6 @@ This allows us to refer to the welcome prompt, simply as `{{ tts.welcome }}`, as
 flowchart LR
     lv["`Flow Variables
     _spanish_line = 2000_
-    _tts_messages_
     _tts_
     `"]
 
