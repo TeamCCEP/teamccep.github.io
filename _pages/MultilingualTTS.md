@@ -4,6 +4,8 @@ date: 2025-06-09
 layout: post
 ---
 
+_The diagrams in this document are no rendering properly.  To see them, visit the [github repo file directly](https://github.com/TeamCCEP/teamccep.github.io/blob/master/_pages/MultilingualTTS.md)._
+
 **Multilingual TTS** refers to a technique inside of Webex CC, which allows for multiple language support within a single Flow, with the use of Text to Speech (TTS), and without the need for parallel activities; making for a concise and effencient flow.
 
 For the duration of this article, I will only be referencing the Cisco native TTS feature, which is documented [here](https://help.webex.com/en-us/article/ntkjqhw/Text-to-Speech-(TTS)-in-Webex-Contact-Center).
