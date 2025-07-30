@@ -4,9 +4,7 @@ date: 2025-07-18
 layout: post
 ---
 
-# !!! Under Construction !!!
-
-**Webex CC Integrations** are great for handling OAuth token management to your external API services, however, the methods which are required by Webex API, are not supported by WxCC Integrations.  That leads me to this article, where I am going to show an alternate method, completely contained within Webex, to **access the Webex APIs from within WxCC Flow Designer and WxConnect Flows as Custom Nodes**.
+**Webex CC Integrations** are great for handling OAuth token management to your external API services, however, the methods which are required by Webex API, are not supported by WxCC Integrations.  That leads me to this article, where I am going to show an alternate method, completely contained within Webex, to **access the Webex APIs from within WxCC Flow Designer**, oh and as a bonus, **from WxConnect Flows as Custom Nodes** as well!
 
 # Setup a Webex Service App
 
@@ -107,4 +105,112 @@ You should now be ready to attach this main flow to an Entry Point and phone num
 
 # Configure WxConnect Flow Custom Nodes
 
-Coming soon...
+We are going to borrow the work we did in the section **Setup a Webex Service App**.  It's ok that WxCC and WxConnect use the same integration; they will each get their own tokens, and that's ok, but feel free to create two separate integrations if that's more your style.
+
+Buckle up though, as this process is not easy your first time through.  Though, once you do create this, and it works, you should be able to enahance it beyond the example I lead you through.
+
+## Create a Custom Node
+
+1. Control Hub > Contact Center > Webex Connect > Assets > Integrations > Add Integration > Custom Node
+   1. Name is something like "Webex API"
+   2. Rest API
+   3. Description as you see fit
+   4. Node Category as you see fit
+   5. Creation Type from blank
+   6. SVG for Node icon ([there's one here](https://github.com/TeamCCEP/teamccep.github.io/tree/master/assets/files/WebexAPIFromWxCC) you can use)
+
+Now, this next page you see is both the integration details (e.g., client ID and secret), but also the API call too (aka Request Method).  The way WxConenct works is, each API call you would like to make, needs it's own integration detail added, and each API call will obtain its own token.  You are allowed 25 API calls per custom node.
+
+## Add a Request Method
+
+I will replicate the same person lookup as we did for WxCC flow.
+
+1. Request Name is "GetPersonByEmail" or similar
+2. Request and Conenction Timeout is 2000ms or thereabouts
+3. Type is GET
+4. Resource URL is `https://webexapis.com/v1/people`
+5. Authorization
+   1. Type is OAuth 2.0
+   2. Grant Type is Authorization Code
+   3. Consumer ID is your Client ID
+   4. Consumer Secret is your Client Secret
+   5. Authorization URL is `https://webexapis.com/v1/authorize`
+   6. Scope is `spark-admin:people_read spark:kms`
+      1. You may notice the `spark:kms` is new, but that's not specific to WxConnect, it's actually a hidden scope, that was just hidden from us previously, but we need to know about now.
+   7. Access Token URL is `https://webexapis.com/v1/access_token`
+   8. Refresh Token URL is `https://webexapis.com/v1/access_token`
+   9. Click the Access Token button
+   10. A window should pop-up for you to complete the auth
+   11. Confirm you now have an access token, and refresh token
+   12. Scroll down to URL Parameters and add two parameters:
+       1.  Parameter is `email` for one and `callingData` for the other
+       2.  Parameter Type is "Dynamic" for `email` and "Static" for `callingData`
+       3.  Field Name is "email" for `email`
+       4.  Parameter Value is `true` for `callingData`
+   13. Scroll down to Response section and add two Node Events (like node outcomes)
+       1.  Node Name is "Success" for one, and "Error" for the other
+       2.  Switch Body to HTTP Status for both
+       3.  Condition is "equals" for Success and "not equals" for Error
+       4.  Value is `200` for both
+       5.  Node Edge is "Success" and "Error" respectively
+   14. Still in the Response section, let's add one response object
+       1.  Parameter name is "Person" is similar
+       2.  Body is Body
+       3.  Response Path is `$.items[0]`
+           1.  This means that if there is a returned person from the API call, the customer node will have an output variable called `person` that you can work with in the flow.
+   15. Click Save
+   16. [Optional] Click Test to perform a quick test
+       1.  Select Method Name from Drop Down
+       2.  Enter the email of one of your users
+       3.  Click Test and observe the output
+   17. Click to go back by "Manage Custom Node" header at the top of the page
+   18. Looking at the list of integrations, notice that your new integration is not toggled on right now, so you need to toggle it on, so that it's visible in your WxConnect Flows.
+6.  
+
+_Note: If you need to make more than just this one People lookup API call, you will need to repeat steps 1 - 15 again for each API call you configure._
+
+## Build a WxConnect Flow
+
+We'll build a simple Webhook based flow for testing the integration.
+
+1. WxConnect > Services > [choose any service or create a new one] > Flows > Create Flow
+2. Flow Name is "Testing Webex API" or similar
+3. Method is New Flow
+4. Select "Start from Scratch"
+5. Click Create
+6. Select Webhook as the Trigger
+7. Choose "Crete new event" radio button to create a new webhook URL
+   1. Copy this URL for your notes, we'll need it in a minute
+8. Name is "Testing Webex API" or similar
+9. Click Save
+10. Drag in your custom node (mine is called Webex API and has the Webex icon)
+11. Connect the Configure Webhook start node to it
+12. Double-click the Webex API node to open its properties
+    1.  Select the Method Name
+    2.  Enter the email address of one of your users
+    3.  Click Save to close the properties
+13. Drag in an Evaluate node
+14. Connect the custom node to it
+15. Double-click the Evaluate node to open its properties
+    1.  Use the following code in the node:
+    ```javascript
+    const person_json = JSON.parse("$(n3.person)");
+    const person_name = person_json.displayName;
+    const person_status = person_json.status;
+
+    const debug_data = JSON.stringify({
+        "person_name": person_name,
+        "person_status": person_status,
+        "person_json": person_json
+    });
+
+    0;
+    ```
+    2. Script Output is `0`
+    3. Branch Name is "Success"
+    4. Click Save to close the properties
+16. Click Make Live and wait until its Live
+17. Open Postman, or a similar app, and issue a POST request to your Webhook URL, with an empty JSON body of `{}`
+18. Go back to your Flow and click on the debugger, then click decrypt logs
+19. Find your transaction (there will likely only be one) and select it
+20. Look at your Evalute node's outcome and you should see the `debug_data` variable populated with data from the API call (you'll see some other variables there too)
