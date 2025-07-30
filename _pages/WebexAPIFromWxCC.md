@@ -15,7 +15,7 @@ layout: post
 1. Go to [http://developer.webex.com/](http://developer.webex.com/) and sign in with your Webex account
 2. Click on your Avatar and then select My Webex Apps
 3. Create a new Service App
-   1. Name it something cool like "Lazer Face", or something more tame like "WxCC Flow Access."  It's up to you!
+   1. Name it something cool like "Taserface", or something more tame like "WxCC Flow Access."  It's up to you!
    2. Select or upload your preferred icon
    3. Description is...stay with me here...where you describe what this integration does
    4. Contact email is whatever email you want to use
