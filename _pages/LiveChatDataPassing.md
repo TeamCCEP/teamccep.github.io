@@ -19,37 +19,37 @@ If and when you create your chat widget, you will undoubtably come across the st
 ~~~ javascript
 // custom code addition to pass website data to webex connect flow
 // setup a recurring check every 250ms to know when we're ready to attach our data
-const wait_code = setInterval(() => {
-    console.log("%cChecking for imichatwidget...", "color: coral; font-weight: bold;");
-
+const wait = setInterval(() => {
     // if chat widget global object isn't present, continue to wait longer
-    if (typeof imichatwidget === 'undefined') return;
+    if (typeof imichatwidget === "undefined") return;
 
-    // chat widget global object is now found, so we stop waiting for it
-    clearInterval(wait_code);
+    // if the chat widget on() function isn't present, also continue to wait longer
+    if (typeof imichatwidget.on === "undefined") return;
 
-    console.log("%cFound imichatwidget!", "color: coral; font-weight: bold;");
+    // we have what we need to proceed, so stop the interval checking
+    clearInterval(wait);
 
-    // construct the data we want to send the chat widget
-    // here we are using static data
-    // however, the values can be supplied by server side rendered code or references to
-    // other javascript variables your site already works with
-    const data = {
-        "custom_chat_fields": {
-            "name": "Anthony Holloway",
-            "email": "anhollow@cisco.com"
-        }
-    };
+    // use the on ready callback to load the data at the appropriate time
+    imichatwidget.on("imichat-widget:ready", () => {
+        imichatwidget.init(
 
-    // attach the data as JSON string
-    imichatwidget.init(JSON.stringify(data), () => {
-        console.log("%cData attached!", "color: coral; font-weight: bold;");
+        // construct the data we want to send the chat widget
+        // here we are just using static data; however, the values
+        // can be supplied by server side rendered code, or references to
+        // other javascript variables, which your site already works with
+        // the JSON.stringify is required, as is the "custom_chat_fields" key
+
+        JSON.stringify({
+            "custom_chat_fields": {
+                "name": "Anthony Holloway",
+                "email": "anhollow@cisco.com"
+            }
+        }), () => {});
     });
-
 }, 250);
 ~~~
 
-If you want to see this custom code in the context of the overall website, I have an example [here](https://github.com/avholloway/www.avholloway.com/blob/master/chat/index.html).
+If you want to see this custom code in the context of the overall website, I have an example [here](https://github.com/avholloway/www.avholloway.com/blob/master/chat/auto-data-passing/index.html).
 
 # Step 2 - WxConnect Flow Variables
 
