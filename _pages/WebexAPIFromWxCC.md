@@ -165,9 +165,8 @@ I will replicate the same person lookup as we did for WxCC flow.
        3.  Click Test and observe the output
    17. Click to go back by "Manage Custom Node" header at the top of the page
    18. Looking at the list of integrations, notice that your new integration is not toggled on right now, so you need to toggle it on, so that it's visible in your WxConnect Flows.
-6.  
 
-_Note: If you need to make more than just this one People lookup API call, you will need to repeat steps 1 - 15 again for each API call you configure._
+_Note: If you need to make more than just this one People lookup API call, you will need to repeat these steps again for each API call you configure._
 
 ## Build a WxConnect Flow
 
