@@ -27,7 +27,7 @@ layout: post
 ## Authorize the Service App
 
 1. Go to Control Hub [https://admin.webex.com/](https://admin.webex.com/)
-2. Select Apps > Service Apps > Scroll the list and find "Lazer Face" or whatever you called yours
+2. Select Apps > Service Apps > Scroll the list and find "Taser Face" or whatever you called yours
    * **TIP:** The search is by ID and not name, so if you search for "Taser" and see nothing, that's why
 3. After selecting the Service App, flip on the Authorize togggle
 
