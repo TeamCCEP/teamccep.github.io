@@ -12,7 +12,7 @@ Below I will take you through three simple steps to pass data, with a fourth ste
 
 The following help document is all we have to go off of: [https://docs.imi.chat/reference/imichatwidgetinit](https://docs.imi.chat/reference/imichatwidgetinit), and because it's insufficient to get a solution working, that is why I am writing this helpful tutorial for you (and me!).
 
-# Step 1 - Modify the Default Installtion Code
+# Step 1 - Modify the Default Installation Code
 
 If and when you create your chat widget, you will undoubtably come across the step where you receive the HTML/Javascript code to copy and paste into your website.  We will need to add customer code to the end of that default block of code, right above the `</script>` closing tag.
 
