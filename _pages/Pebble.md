@@ -166,7 +166,7 @@ Result: **`true`**
 
 # Last X Digits
 
-This is a useful expression to get the last few digits of a number.  "Is your correct number the one ending in 1212?".  The below expression assumes the number is stored in a variable called phone0, and you want the last four digits.
+This is a useful expression to get the last few digits of a number.  "Is your correct number the one ending in 1212?".  The below expression assumes the number is stored in a variable called `phone_number`, and you want the last four digits.
 
 <!-- {%raw%} -->
 
