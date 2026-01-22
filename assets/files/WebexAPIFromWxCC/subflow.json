@@ -515,7 +515,7 @@
         "properties": {
           "httpRequestHeaders": {},
           "authenticated": true,
-          "httpRequestBody": "{\n  \"id\": \"{{ params.global_variable.id }}\",\n  \"name\": \"{{ params.global_variable.id }}\",\n  \"active\": true,\n  \"variableType\": \"String\",\n  \"defaultValue\": \"{{ access_token }}\",\n  \"reportable\": false,\n  \"agentViewable\": false,\n  \"agentEditable\": false\n}",
+          "httpRequestBody": "{\n  \"id\": \"{{ params.global_variable.id }}\",\n  \"name\": \"{{ params.global_variable.name }}\",\n  \"active\": true,\n  \"variableType\": \"String\",\n  \"defaultValue\": \"{{ access_token }}\",\n  \"reportable\": false,\n  \"agentViewable\": false,\n  \"agentEditable\": false\n}",
           "httpRequestPath": "/organization/{{ NewPhoneContact.OrgId }}/cad-variable/{{ params.global_variable.id }}",
           "httpRequestUrl": null,
           "connectorId": "5c7c2677-c50c-4c2f-8064-e5fea19e871d",
