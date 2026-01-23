@@ -105,9 +105,28 @@ You should now be ready to attach this main flow to an Entry Point and phone num
 
 # Configure WxConnect Flow Custom Nodes
 
-We are going to borrow the work we did in the section **Setup a Webex Service App**.  It's ok that WxCC and WxConnect use the same integration; they will each get their own tokens, and that's ok, but feel free to create two separate integrations if that's more your style.
+We are going to repeat the work we did in the section **Setup a Webex Service App**, but unfortunately, we cannot use a Service App, so we'll need to create an Intergration instead.
 
 Buckle up though, as this process is not easy your first time through.  Though, once you do create this, and it works, you should be able to enahance it beyond the example I lead you through.
+
+# Setup a Webex Integration
+
+## Create the Integration
+
+1. Go to [http://developer.webex.com/](http://developer.webex.com/) and sign in with your Webex account
+2. Click on your Avatar and then select My Webex Apps
+3. Create a new Integration
+   1. Mobile SDK Usage is "No"
+   2. Name it something cool
+   3. Select or upload your preferred icon
+   4. Provide a description
+   5. Redirect URI is "https://oauth.us.webexconnect.io/callback"
+   6. The scopes are important and I cannot tell you what to check, but basically you need to know a few things:
+      1. You cannot select all of them, there's a limit to it
+      2. Each API endpoint doc page lists which scopes are required, so use that as your guide, to which and how many scopes to check off
+         1. For me, I am going to only select `spark-admin:people_read`, so that I can lookup users in the directory
+   7. Click to Add Integration
+4. Copy your Client ID and Secret to your notes
 
 ## Create a Custom Node
 
