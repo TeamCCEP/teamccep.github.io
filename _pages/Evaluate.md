@@ -1,22 +1,24 @@
 ---
 title: Evaluate
-date: 2025-05-05
+date: 2026-03-11
 layout: post
 ---
 
-**Evaluate** is a node within a Webex Connect flow, which allows you to execute Javascript code.
+_Last Updated: March 11, 2026_
 
-While similar to Functions in WxCC Flow Designer, the Evaluate node runs on the [Rhino JS Engine](<https://en.wikipedia.org/wiki/Rhino_(JavaScript_engine)>), and therefore, [is not compatible](https://mozilla.github.io/rhino/compat/engines.html) with more common Javascript programming features and concepts.
+**Evaluate** is a node within a Webex Connect flow, which allows you to execute Javascript code, work with variables, and create branching logic.
+
+While similar to Functions in WxCC Flow Designer, the Evaluate node runs on the [Rhino JS Engine](<https://en.wikipedia.org/wiki/Rhino_(JavaScript_engine)>), and therefore, [is not compatible](https://mozilla.github.io/rhino/compat/engines.html) with the latest Javascript programming features and concepts. (E.g., ES6 Arrow Functions).
 
 With this in mind, you likely cannot use typical AI code generation tools, even the built-in one inside of Webex Connect, as-is. You might have success with the bare results, but you also might need to massage the output, or use prompt engineering to get working results. I touch on this later in the article.
 
-In this article, I aim to make you an Evaluate node expert, but not make you a Javascript expert.
+In this article, I aim to make you an Evaluate node expert, but not make you a Javascript expert.  For that, I recommend the [MDN Javascript page](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
 
 # What is the Evaluate Node?
 
-Simply put, the Evaluate node executes Javascript code, while optionally working with input and output variables, and then returning to flow execution through branching. For an example of why you might use the Evaluate node, look no further than the [sample webex connect flows on github](https://github.com/CiscoDevNet/webexcc-digital-channels/tree/main/Webex%20Connect%20Flows). Specifically, at the time of this writing, the [v3.3 Live Chat flow](https://github.com/CiscoDevNet/webexcc-digital-channels/blob/main/Webex%20Connect%20Flows/v3.3/Template/Media%20Specific%20Workflows/LiveChatInboundFlow.workflow.zip) uses the Evalute node quite heavily to process inbound messages, their attachments, all while caring for PCI data, etc.
+Simply put, the Evaluate node executes Javascript code, while optionally working with input and output variables, and then returning to flow execution through branching. For an example of why you might use the Evaluate node, look no further than the [sample webex connect flows on github](https://github.com/CiscoDevNet/webexcc-digital-channels/tree/main/Webex%20Connect%20Flows). Specifically, at the time of this writing, the [v3.4 Live Chat flow](https://github.com/CiscoDevNet/webexcc-digital-channels/blob/main/Webex%20Connect%20Flows/v3.4/Template/Media%20Specific%20Workflows/LiveChatInboundFlow.workflow.zip) uses the Evalute node to process inbound messages, their attachments, PCI and malware data, etc. all to build a JSON payload for the Resolve Conversation node.
 
-# Bare-Bones Script
+# The Absolute Basics
 
 The most basic script you could possibly write, returns a value of any type, and also has one output branch, which matches your return value, and is given some kind of label.
 
@@ -28,7 +30,7 @@ As you can see in the above example:
 - I have one branch created called "Success" (the name is up to you)
 - I set the output value for that branch to match what the script is outputing
 
-## Bare-Bones Testing
+## Testing Basics
 
 There is a code testing function within the node, and if you click test, then click test again, it will either show you some output, or an error.
 
@@ -36,7 +38,7 @@ In my case, if I test the bare bones script, I can see that the output is `0` an
 
 <img style="border: 1px solid grey;" src="/assets/images/Evaluate/bare-bones-test.png" height="400" />
 
-## Bare-Bones Outcomes
+## Basic Outcomes
 
 As you can see in this sample flow, the green line represents the name of the branch you created, and then there's two additional error handling outcomes:
 
@@ -59,11 +61,11 @@ In the following screenshot, I have created an additional branch: "1 = Alternate
 
 # Handling Input and Output
 
-Moving beyond a bare bones script, you might want to work with input data, and output data. Below we will cover the details of input and output data handling.
+Moving beyond a basic script, you might want to work with input data, and output data. Below we will cover the details of input and output data handling.
 
 ## Input Data
 
-By default, and as you might imagine, you can use another node's output variables, just like you do in most other nodes (e.g., `$(variable)`). In the below example, my inbound webhook is looking for a JSON payload with a key named "input" in it, and my Evaluate node can reference it as follows:
+By default, and as you might imagine, you can use another node's output variables, just like you do in most other nodes (e.g., `$(variable_name_here)`). In the below example, my inbound webhook is looking for a JSON payload with a key named "input" in it, and my Evaluate node can reference it as follows:
 
 <img style="border: 1px solid grey;" src="/assets/images/Evaluate/input-node-variable.png" height="300" />
 
