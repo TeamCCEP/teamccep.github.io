@@ -198,7 +198,7 @@ flowchart LR
 
 # Storing Text in JSON
 
-Setting your text for _welcome_ in the flow activites is fine, but I think that if I scale this up, and my flow ends up with five languages and five prompts to play tot he customer, that setting 25 variables in my flow seems like a little too much.
+Setting your text for _welcome_ in the flow activites is fine, but I think that if I scale this up, and my flow ends up with five languages and five prompts to play to the customer, that setting 25 variables in my flow seems like a little too much.
 
 If we use a JSON variable to store all of our language prompts, we could use a single _Parse_ activity to pull out just the TTS prompts for a given language, and then using JSON's dot-notation inside of Pebble, we could tell it which prompt to play, fairly easily.  Let's dive a little deeper.
 
