@@ -102,7 +102,7 @@ I think it should be clear at this time, that you can change both language and v
 
 # Dynamic Language by DNIS
 
-Sometimes you publish phone numbers for specific language support, e.g., you publish a spanish only line in a spanish publication.  Therefore, your ability to set the language by phone number called, is fairly, but requires you to pick a method of mapping your DNIS to one or more values.  I have a [vidcast video](https://app.vidcast.io/share/7d47679c-c9fa-4c4a-8dcb-b79de2fee9f3?playerMode=vidcast) which covers five different options for doing so, you would just expand on this concept for language and voice names.
+Sometimes you publish phone numbers for specific language support, e.g., you publish a spanish only line in a spanish publication.  Therefore, your ability to set the language by phone number dialed requires you to pick a method of mapping your DNIS to one or more values.  I have a [vidcast video](https://app.vidcast.io/share/7d47679c-c9fa-4c4a-8dcb-b79de2fee9f3?playerMode=vidcast) which covers five different options for doing so, you would just expand on this concept for language and voice names.
 
 For the example below, I will use the simple option with the _Case_ activity, and I am introducing a new String variable _spanish\_line_ which holds the phone number for my...well...spanish line.  I'm using an example phone number of 2000, but as some of you may know, we would need a full +E164 number here in production.
 
