@@ -59,7 +59,7 @@ In my case, I am creating two custom variables in my WxConnect Flow, called: `cu
 
 <img style="border: 1px solid grey;" src="/assets/images/LiveChatDataPassing/custom-variables.png" width="100%" />
 
-# Step 3 Evauate Node to Parse Data
+# Step 3 - Evaluate Node to Parse Data
 
 You will receive the data in your connect flow from the start node, and here is the Evaluate node code you could use to parse and store the data in your custom variables.
 
@@ -76,7 +76,7 @@ try {
 
 And with that, you now have the two pieces of data in your flow and ready to work with.  There's nothing more to do, as the rest of the steps could just be about how you will use the data.  In the next step I'll just show one method.
 
-# Step 4 - Say Hello!
+# Step 4 - Saying Hello!
 
 I will greet the chat user by name, in a very simple manner, just to show one simple usage of the custom variables.  This is in the node which sends a message back to the chat user.
 
