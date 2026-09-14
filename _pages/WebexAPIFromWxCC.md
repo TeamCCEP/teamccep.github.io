@@ -33,7 +33,7 @@ layout: post
 
 ## Grab an Access Token and Refresh Token
 
-1. At this point, you'll need to either refresh the Service App page you were on in the previous section, or just click off of it, and then back on to it, to see the new section titled "Org Authorizations"
+1. At this point, you'll need to refresh the Service App page on the Developer Portal in order to see the new section titled "Org Authorizations"
    1. If you don't see "Org Authorizations", click refresh again
 2. Select your Org Name from the drop down list
 3. Paste your Client Secret into the field below the org name, and generate tokens
