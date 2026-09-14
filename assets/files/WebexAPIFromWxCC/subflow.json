@@ -80,7 +80,7 @@
           "httpRequestHeaders": {},
           "httpRequestMethod_type": null,
           "authenticated": false,
-          "httpRequestBody": "{\n  \"grant_type\": \"refresh_token\",\n  \"client_id\": \"{{ params.service_app.client_id }}\",\n  \"client_secret\": \"{{ params.service_app.client_name }}\",\n  \"refresh_token\": \"{{ params.service_app.refresh_token }}\"\n}",
+          "httpRequestBody": "{\n  \"grant_type\": \"refresh_token\",\n  \"client_id\": \"{{ params.service_app.client_id }}\",\n  \"client_secret\": \"{{ params.service_app.client_secret }}\",\n  \"refresh_token\": \"{{ params.service_app.refresh_token }}\"\n}",
           "httpRequestPath": null,
           "httpRequestUrl": "https://webexapis.com/v1/access_token",
           "connectorId": null,
@@ -373,7 +373,7 @@
         "properties": {
           "httpRequestHeaders": {},
           "authenticated": false,
-          "httpRequestBody": "{\n  \"grant_type\": \"refresh_token\",\n  \"client_id\": \"{{ params.service_app.client_id }}\",\n  \"client_secret\": \"{{ params.service_app.client_name }}\",\n  \"refresh_token\": \"{{ params.service_app.refresh_token }}\"\n}",
+          "httpRequestBody": "{\n  \"grant_type\": \"refresh_token\",\n  \"client_id\": \"{{ params.service_app.client_id }}\",\n  \"client_secret\": \"{{ params.service_app.client_secret }}\",\n  \"refresh_token\": \"{{ params.service_app.refresh_token }}\"\n}",
           "httpRequestPath": null,
           "httpRequestUrl": "https://webexapis.com/v1/access_token",
           "connectorId": null,
