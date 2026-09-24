@@ -29,7 +29,7 @@
       "description": "",
       "id": "",
       "type": "JSON",
-      "value": "{\n    \"global_variable\": {\n        \"name\": \"webex_api_token\",\n        \"id\": \"eaa8f70f-7617-4439-bba1-2c2774a3593d\"\n    },\n    \"service_app\": {\n        \"name\": \"test_run\",\n        \"client_id\": \"C08f2c41c6ab5c54fd2f10e451dcf8e9c919f67fb449dafeaaa6e56921284cb7\",\n        \"client_secret\": \"ef64c7bce74e4e1387bca3d5799da1b4d2505a7b6a795ff74d1683834272767\",\n        \"refresh_token\": \"RzRkODUyNWEtNjg4Mi00NmFiWI3MTktMTg5NjU0ZjdmYjE0MGZhMGQ1OGItNDJk_P0A1_6f22e7d9-d262-4240-a628-4bfdf8a1b2a3\"\n    }\n}",
+      "value": "{\n    \"global_variable\": {\n        \"name\": \"YOUR_GLOBAL_VARIABLE_NAME\",\n        \"id\": \"YOUR_GLOBAL_VARIABE_ID\"\n    },\n    \"service_app\": {\n        \"name\": \"YOUR_INTEGRATION_NAME\",\n        \"client_id\": \"YOUR_CLIENT_ID\",\n        \"client_secret\": \"YOUR_CLIENT_SECRET\",\n        \"refresh_token\": \"YOUR_REFRESH_TOKEN\"\n    }\n}",
       "isSecure": false,
       "isCAD": false,
       "desktopLabel": "",
